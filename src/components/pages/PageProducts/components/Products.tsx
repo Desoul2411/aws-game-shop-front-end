@@ -36,9 +36,10 @@ export default function Products() {
 
   useEffect(() => {
     axios.get(`${API_PATHS.product}`)
-      .then(res => setProducts(res.data));
+      .then(res => setProducts(res.data.products));
   }, [])
 
+  console.log('products', products);
   return (
     <Grid container spacing={4}>
       {products.map((product: Product, index: number) => (
@@ -46,7 +47,7 @@ export default function Products() {
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image={`https://source.unsplash.com/random?sig=${index}`}
+              image={`${API_PATHS.image}${product.imageid}.jpg`}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
